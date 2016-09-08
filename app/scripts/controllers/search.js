@@ -22,7 +22,7 @@ function searchCtrl($sails, $location) {
   function init() {
     var entities = 'Aguascalientes, Baja California, Baja California Sur, ' +
       'Campeche, Chiapas, Chihuahua, Coahuila de Zaragoza,' +
-      'Colima, Distrito Federal, Durango, Guanajuato, Guerrero, ' + 
+      'Colima, Ciudad de México, Durango, Guanajuato, Guerrero, ' + 
       'Hidalgo, Jalisco, Michoacán de Ocampo, Morelos, México, Nayarit, ' +
       'Nuevo León, Oaxaca, Puebla, Querétaro, Quintana Roo, San Luis Potosí, ' + 
       'Sinaloa, Sonora, Tabasco, Tamaulipas, Tlaxcala,' +
