@@ -1,0 +1,10 @@
+<div ng-controller='SearchCtrl as vm' id='search'>
+  <md-autocomplete md-selected-item="vm.selectedItem" md-search-text="vm.searchText" md-selected-item-change="vm.selectedItemChange(entity)" md-items="entity in vm.entities | filter : vm.searchText" md-item-text="entity.name" md-min-length="0" placeholder="Escoge un estado de la república">
+    <md-item-template>
+      <span md-highlight-text="vm.searchText" md-highlight-flags="^i">{{entity.name}}</span>
+    </md-item-template>
+    <md-not-found>
+      No hay resultados para "{{vm.searchText}}"
+    </md-not-found>
+  </md-autocomplete>
+</div>

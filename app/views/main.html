@@ -1,0 +1,15 @@
+<div layout='column' layout-align='center' id='mainContainer' flex>
+  <md-toolbar md-scroll-shrink ng-include="'views/toolbar.html'"></md-toolbar>
+  <md-content flex>
+    <md-list md-padding>
+      <md-list-item class="md-3-line" ng-repeat="mia in vm.mias" ng-click="null">
+        <div class="md-list-item-text" layout="column" md-padding>
+          <h3>{{ mia.proyecto }} - {{ mia.clave }}</h3>
+          <h4>{{ mia.entidad }} - {{mia.fechaIngreso | date : shortDate}}</h4>
+          <p>{{ mia.tramite }}</p>
+        </div>
+        <md-divider></md-divider>
+      </md-list-item>
+    </md-list>
+  </md-content>
+</div>

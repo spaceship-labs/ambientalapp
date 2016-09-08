@@ -1,0 +1,10 @@
+<div class="md-toolbar-tools" ng-controller='ToolbarCtrl as vm'>
+  <h3>
+  	<a href='#/'>ImpactoAmbiental.mx</a>
+  	<span ng-if='vm.breadcrumb.length'> / </span>
+  	<span ng-repeat='crumb in vm.breadcrumb' md-padding><a ng-href='#/{{crumb.href}}'> {{crumb.display}}</a> / </span>
+  </h3>
+  
+  <div flex></div>
+  <div ng-include="'views/search.html'"></div>
+</div>
