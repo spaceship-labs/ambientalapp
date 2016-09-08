@@ -1,0 +1,35 @@
+<div layout='column' layout-align='center' id='mainContainer' flex>
+  <md-toolbar md-scroll-shrink ng-include="'views/toolbar.html'"></md-toolbar>
+  <md-content flex layout-padding>
+    <md-card layout-padding>
+      <h1>{{vm.mia.proyecto}} - {{vm.mia.clave}}</h1>
+      <h2><a ng-href='#/?entidad={{vm.mia.entidad}}'>{{vm.mia.entidad}}</a></h2>
+      <md-list layout-padding>
+        <md-list-item>
+          <p><strong>Clave:</strong> {{ vm.mia.clave }}</p>
+        </md-list-item>
+        <md-list-item>
+          <p><strong>Fecha de ingreso: </strong>{{vm.mia.fechaIngreso | date : shortDate}}</p>
+        </md-list-item>
+        <md-list-item>
+          <p><strong>Situación actual:</strong> {{ vm.mia.situacionActual }}</p>
+        </md-list-item>
+        <md-list-item>
+          <p><strong>Tramite: </strong>{{ vm.mia.tramite }}</p>
+        </md-list-item>
+        <md-list-item>
+          <p><strong>Estado:</strong> {{ vm.mia.estado }}</p>
+        </md-list-item>
+        <md-list-item>
+          <p><strong>Gaceta de referencia:</strong><a ng-href='{{vm.mia.gaceta.pdf}}'> {{ vm.mia.gaceta.pdf }}</a></p>
+        </md-list-item>
+      </md-list>
+      <h3>Documentos</h3>
+      <div layout='row'>
+        <md-button ng-disabled="!vm.mia.resumen" ng-href='{{vm.mia.resumen}}' target='_blank' class="md-raised md-primary">Resumen</md-button>
+        <md-button ng-disabled="!vm.mia.estudio" ng-href='{{vm.mia.estudio}}' target='_blank' class="md-raised md-primary">Estudio</md-button>
+        <md-button ng-disabled="!vm.mia.resolutivo" ng-href='{{vm.mia.resolutivo}}' target='_blank' class="md-raised md-primary">Resolutivo</md-button>
+      </div>
+    </md-card>
+  </md-content>
+</div>

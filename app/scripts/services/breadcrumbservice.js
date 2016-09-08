@@ -21,7 +21,6 @@ function breadcrumbService($location) {
     var path = $location.path();
     var search = $location.search();
     var breadcrumb = [];
-    console.log(path, search);
     if (path === '/') {
       if (search.entidad) {
         breadcrumb.push({

@@ -19,8 +19,6 @@ function toolbarCtrl($location,breadcrumbService) {
 
   function init() {
    	vm.breadcrumb = breadcrumbService.getBreadcrumb();
-   	console.log(vm.breadcrumb);
-
   }
 
   vm.init();

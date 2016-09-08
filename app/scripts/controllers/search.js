@@ -34,6 +34,7 @@ function searchCtrl($sails, $location) {
   }
 
   function selectedItemChange(item) {
+    $location.path('/');
     $location.search({ entidad: item.name });
   }
 
