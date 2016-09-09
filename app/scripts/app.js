@@ -17,7 +17,8 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngMaterial',
-    'ngSails'
+    'ngSails',
+    'md.data.table'
   ])
   .config(function($routeProvider) {
     $routeProvider

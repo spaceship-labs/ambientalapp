@@ -25,7 +25,7 @@ function searchCtrl($sails, $location) {
       'Colima, Ciudad de México, Durango, Guanajuato, Guerrero, ' + 
       'Hidalgo, Jalisco, Michoacán de Ocampo, Morelos, México, Nayarit, ' +
       'Nuevo León, Oaxaca, Puebla, Querétaro, Quintana Roo, San Luis Potosí, ' + 
-      'Sinaloa, Sonora, Tabasco, Tamaulipas, Tlaxcala,' +
+      'Sinaloa, Sonora, Tabasco, Tamaulipas, Tlaxcala, ' +
       'Veracruz de Ignacio de la Llave, Yucatán, Zacatecas';
     vm.entities = entities.split(/, +/g).map(function(entity) {
       return { name: entity };

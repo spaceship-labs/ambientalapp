@@ -1,3 +1,6 @@
 body{ overflow-y:hidden;}
+pre{background-color:#eee;}
 #mainContainer{height:100vh;}
 #search{width:400px;}
+
+.highlighted{background:#8ee;line-height:34px;}

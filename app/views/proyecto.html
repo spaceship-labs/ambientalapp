@@ -2,9 +2,15 @@
   <md-toolbar md-scroll-shrink ng-include="'views/toolbar.html'"></md-toolbar>
   <md-content flex layout-padding>
     <md-card layout-padding>
-      <h1>{{vm.mia.proyecto}} - {{vm.mia.clave}}</h1>
-      <h2><a ng-href='#/?entidad={{vm.mia.entidad}}'>{{vm.mia.entidad}}</a></h2>
+      <md-card-title>
+        <md-card-title-text>
+          <span class="md-headline">{{vm.mia.proyecto}} - {{vm.mia.clave}}</span>
+        </md-card-title-text>
+      </md-card-title>
       <md-list layout-padding>
+        <md-list-item>
+          <p><strong>Entidad:</strong> <a ng-href='#/?entidad={{vm.mia.entidad}}'>{{vm.mia.entidad}}</a></p>
+        </md-list-item>
         <md-list-item>
           <p><strong>Clave:</strong> {{ vm.mia.clave }}</p>
         </md-list-item>
@@ -21,7 +27,7 @@
           <p><strong>Estado:</strong> {{ vm.mia.estado }}</p>
         </md-list-item>
         <md-list-item>
-          <p><strong>Gaceta de referencia:</strong><a ng-href='{{vm.mia.gaceta.pdf}}'> {{ vm.mia.gaceta.pdf }}</a></p>
+          <p><strong>Gaceta de referencia:</strong><a ng-href='{{vm.mia.gaceta.pdf}}' target='_blank'> {{ vm.mia.gaceta.pdf }}</a></p>
         </md-list-item>
       </md-list>
       <h3>Documentos</h3>
@@ -30,6 +36,27 @@
         <md-button ng-disabled="!vm.mia.estudio" ng-href='{{vm.mia.estudio}}' target='_blank' class="md-raised md-primary">Estudio</md-button>
         <md-button ng-disabled="!vm.mia.resolutivo" ng-href='{{vm.mia.resolutivo}}' target='_blank' class="md-raised md-primary">Resolutivo</md-button>
       </div>
+    </md-card>
+    <md-card layout-padding ng-repeat='space in vm.spaces' layout='row'>
+      <md-table-container flex='30'>
+        <table md-table md-row-select multiple ng-model='vm.selected'>
+          <thead md-head >
+            <tr md-row>
+              <th md-column md-numeric >Punto</th>
+              <th md-column md-numeric>x</th>
+              <th md-column md-numeric>y</th>
+            </tr>
+          </thead>
+          <tbody md-body>
+            <tr md-row md-select="dessert" md-select-id="name" md-auto-select ng-repeat="(key,point) in space">
+              <td md-cell>{{key+1}}</td>
+              <td md-cell>{{point.x.match}}</td>
+              <td md-cell>{{point.y.match}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </md-table-container>
+      <pre layout-padding flex ng-bind-html='vm.getTextFragment(space) | highlightWords : vm.getHighlights(space) '  ></pre>
     </md-card>
   </md-content>
 </div>
