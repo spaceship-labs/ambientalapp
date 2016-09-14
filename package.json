@@ -33,6 +33,7 @@
     "node": ">=0.10.0"
   },
   "dependencies": {
-    "angular-sails": "^2.0.0-beta.4"
+    "angular-sails": "^2.0.0-beta.4",
+    "proj4": "^2.3.15"
   }
 }

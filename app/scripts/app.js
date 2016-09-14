@@ -18,7 +18,8 @@ angular
     'ngSanitize',
     'ngMaterial',
     'ngSails',
-    'md.data.table'
+    'md.data.table',
+    'uiGmapgoogle-maps'
   ])
   .config(function($routeProvider) {
     $routeProvider

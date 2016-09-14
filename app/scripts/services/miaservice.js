@@ -13,7 +13,8 @@ angular.module('ambientalappApp')
 function miaService($sails) {
   var service = {
     getDoc: getDoc,
-    findCoordinates: findCoordinates
+    findCoordinates: findCoordinates,
+    convertWgs84 : convertWgs84
   };
   return service;
 
@@ -60,4 +61,19 @@ function miaService($sails) {
     return spaces;
 
   }
+
+  function convertWgs84(points, zone) {
+    var utm = '+proj=utm +zone=' + zone;
+    var wgs84 = '+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs';
+    var latlng = points.map(function(point) {
+      var result = proj4(utm, wgs84, [point.x.match, point.y.match]);
+      return{
+        latitude : result[1],
+        longitude : result[0]
+      };
+    });
+    console.log(latlng);
+    return latlng;
+  }
+
 }

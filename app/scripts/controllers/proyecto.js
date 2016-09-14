@@ -19,21 +19,26 @@ function proyectoCtrl($sails, $routeParams, miaService) {
   vm.init = init;
   vm.selected = [];
 
-  function getHighlights(space){
+  function getHighlights(space) {
     var highlights = [];
-    space.forEach(function(point){
+    space.forEach(function(point) {
       highlights.push(point.x.match);
       highlights.push(point.y.match);
     });
     return highlights;
   }
-  function getTextFragment(space){
+
+  function getTextFragment(space) {
     var start = space[0].x.index - 200;
-    var end = space[space.length-1].y.index + 200;
-    return vm.text.substr(start,end-start);
+    var end = space[space.length - 1].y.index + 200;
+    return vm.text.substr(start, end - start);
   }
+
   function init() {
     var query = { clave: $routeParams.miaClave, populate: 'gaceta' };
+
+    vm.map = { center: { latitude: 21, longitude: -87 }, zoom: 10 };
+    
     $sails.get('/mia', query).then(function(mias) {
       if (mias.body.length) {
         vm.mia = mias.body[0];
@@ -43,13 +48,14 @@ function proyectoCtrl($sails, $routeParams, miaService) {
 
     miaService
       .getDoc($routeParams.miaClave, 'resumen')
-      .then(function(text){
+      .then(function(text) {
         vm.text = text;
         return miaService.findCoordinates(text);
       })
-      .then(function(spaces){
-        vm.spaces= spaces;
-        console.log(vm.spaces);
+      .then(function(spaces) {
+        vm.spaces = spaces;
+        //console.log(vm.spaces);
+        vm.path =  miaService.convertWgs84(vm.spaces[0], 16);
       });
   }
 
