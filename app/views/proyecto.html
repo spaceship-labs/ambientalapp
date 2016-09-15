@@ -1,6 +1,6 @@
 <div layout='column' layout-align='center' id='mainContainer' flex>
   <md-toolbar md-scroll-shrink ng-include="'views/toolbar.html'"></md-toolbar>
-  <md-content flex layout-padding>
+  <md-content flex layout-padding layout='row'>
     <md-card layout-padding>
       <md-card-title>
         <md-card-title-text>
@@ -37,9 +37,9 @@
         <md-button ng-disabled="!vm.mia.resolutivo" ng-href='{{vm.mia.resolutivo}}' target='_blank' class="md-raised md-primary">Resolutivo</md-button>
       </div>
     </md-card>
-    <md-card layout-padding ng-repeat='space in vm.spaces' layout='column'>
-      <ui-gmap-google-map flex center='vm.map.center' zoom='vm.map.zoom'>
-        <ui-gmap-polygon path='vm.path' stroke='{color:"#6699ee",opacity:1}' fill='{color:"#6699ee",opacity:.2}' fit='true'></ui-gmap-polygon>
+    <md-card layout-padding ng-repeat='(key,space) in vm.spaces' layout='column'>
+      <ui-gmap-google-map flex zoom='vm.map.zoom' center='vm.map.center' bounds='vm.findBounds(key)' options='vm.map.options' >
+        <ui-gmap-polygon path='vm.paths[key]' stroke='{color:"#6699ee",opacity:1}' fill='{color:"#6699ee",opacity:.2}' fit='true'></ui-gmap-polygon>
       </ui-gmap-google-map>
       <div layout='row'>
         <md-table-container flex='40'>

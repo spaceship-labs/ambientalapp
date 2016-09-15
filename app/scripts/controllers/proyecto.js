@@ -11,13 +11,50 @@
 angular.module('ambientalappApp')
   .controller('ProyectoCtrl', proyectoCtrl);
 
-function proyectoCtrl($sails, $routeParams, miaService) {
+function proyectoCtrl($sails, $routeParams, geomapService) {
   /* jshint validthis: true */
   var vm = this;
   vm.getHighlights = getHighlights;
   vm.getTextFragment = getTextFragment;
+  vm.getBounds = getBounds;
+  vm.findBounds = findBounds;
   vm.init = init;
   vm.selected = [];
+  vm.paths = [];
+  vm.bounds = [];
+
+  function findBounds(key) {
+    //console.log(vm.bounds[key]);
+    return vm.bounds[key];
+  }
+
+  function getBounds(path) {
+    var bounds = {
+      northeast: {
+        latitude: path[0].latitude,
+        longitude: path[0].longitude,
+      },
+      southwest: {
+        latitude: path[0].latitude,
+        longitude: path[0].longitude,
+      }
+    };
+    path.forEach(function(point) {
+      if (point.latitude > bounds.northeast.latitude) {
+        bounds.northeast.latitude = point.latitude;
+      }
+      if (point.longitude > bounds.northeast.longitude) {
+        bounds.northeast.longitude = point.longitude;
+      }
+      if (point.latitude < bounds.southwest.latitude) {
+        bounds.southwest.latitude = point.latitude;
+      }
+      if (point.longitude < bounds.southwest.longitude) {
+        bounds.southwest.longitude = point.longitude;
+      }
+    });
+    return bounds;
+  }
 
   function getHighlights(space) {
     var highlights = [];
@@ -37,25 +74,33 @@ function proyectoCtrl($sails, $routeParams, miaService) {
   function init() {
     var query = { clave: $routeParams.miaClave, populate: 'gaceta' };
 
-    vm.map = { center: { latitude: 21, longitude: -87 }, zoom: 10 };
-    
+    vm.map = {
+      zoom: 19,
+      options:{
+        mapTypeId: google.maps.MapTypeId.SATELLITE 
+      }
+    };
+
     $sails.get('/mia', query).then(function(mias) {
       if (mias.body.length) {
         vm.mia = mias.body[0];
       }
-
     });
 
-    miaService
+    geomapService
       .getDoc($routeParams.miaClave, 'resumen')
       .then(function(text) {
         vm.text = text;
-        return miaService.findCoordinates(text);
+        return geomapService.findCoordinates(text);
       })
       .then(function(spaces) {
         vm.spaces = spaces;
         //console.log(vm.spaces);
-        vm.path =  miaService.convertWgs84(vm.spaces[0], 16);
+        vm.spaces.forEach(function(space, key) {
+          vm.paths.push(geomapService.convertWgs84(vm.spaces[0], 16));
+          vm.bounds.push(getBounds(vm.paths[key]));
+        });
+        //vm.path =  geomapService.convertWgs84(vm.spaces[0], 16);
       });
   }
 

@@ -19,7 +19,6 @@ function semarnapi($sails) {
   function getProyects(query) {
     var defaults = { sort: 'fechaIngreso DESC' };
     angular.extend(defaults, query);
-    console.log(defaults);
     return $sails.get('/mia', defaults);
   }
 

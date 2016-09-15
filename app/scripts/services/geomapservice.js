@@ -2,19 +2,19 @@
 
 /**
  * @ngdoc service
- * @name ambientalappApp.miaService
+ * @name ambientalappApp.geomapService
  * @description
- * # miaService
+ * # geomapService
  * Service in the ambientalappApp.
  */
 angular.module('ambientalappApp')
-  .service('miaService', miaService);
+  .service('geomapService', geomapService);
 
-function miaService($sails) {
+function geomapService($sails) {
   var service = {
     getDoc: getDoc,
     findCoordinates: findCoordinates,
-    convertWgs84 : convertWgs84
+    convertWgs84: convertWgs84
   };
   return service;
 
@@ -25,7 +25,7 @@ function miaService($sails) {
   }
 
   function findCoordinates(text) {
-    var pattern = /\d{6,7}\.?\d{0,8}/igm;
+    var pattern = /\d?,?\d{3},?\d{3}\.?\d{0,8}/igm;
     var results = [];
     var spaces = [];
     var index = 0;
@@ -33,11 +33,9 @@ function miaService($sails) {
     /*jshint boss:true */
     while (result = pattern.exec(text)) {
       var distance = result.index - index;
+      console.log(result[0], result.index, index, distance);
       if (index === 0 || distance < 300) {
-        results.push({
-          index: result.index,
-          match: result[0]
-        });
+        index = result.index;
       } else {
         if (results.length > 1) {
           var points = [];
@@ -51,29 +49,41 @@ function miaService($sails) {
               }
             }
           });
-          spaces.push(points);
+          if (points.length >= 2) {
+            spaces.push(points);
+          }
         }
         results = [];
         index = 0;
       }
-      index = result.index;
+      results.push({
+        index: result.index,
+        match: result[0]
+      });
     }
     return spaces;
 
   }
 
+
   function convertWgs84(points, zone) {
-    var utm = '+proj=utm +zone=' + zone;
-    var wgs84 = '+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs';
-    var latlng = points.map(function(point) {
-      var result = proj4(utm, wgs84, [point.x.match, point.y.match]);
-      return{
-        latitude : result[1],
-        longitude : result[0]
-      };
-    });
-    console.log(latlng);
-    return latlng;
+    if (points) {
+      var utm = '+proj=utm +zone=' + zone;
+      var wgs84 = '+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs';
+
+      var latlng = points.map(function(point) {
+        var x = point.x.match.replace(/,/g,'');
+        var y = point.y.match.replace(/,/g,'');
+        var result = proj4(utm, wgs84, [x,y]);
+        return {
+          latitude: result[1],
+          longitude: result[0]
+        };
+      });
+      return latlng;
+    }else{
+      return false;
+    }
   }
 
 }

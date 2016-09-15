@@ -29,7 +29,6 @@ function mainCtrl(semarnapi, $location) {
 
   function appendMias(res) {
     vm.mias = vm.mias.concat(res.data);
-    console.log(vm.mias);
   }
   vm.infiniteMias = {
     toLoad: 0,

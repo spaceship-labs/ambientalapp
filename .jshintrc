@@ -58,6 +58,7 @@
     "angular": false,
     "$": false,
     "d3" : false,
-    "proj4" : false
+    "proj4" : false,
+    "google" : false
   }
 }
