@@ -1,0 +1,24 @@
+<md-card layout-padding ng-repeat='(key,space) in vm.spaces' layout='row'>
+  <ui-gmap-google-map flex zoom='vm.map.zoom' center='vm.map.center' bounds='vm.findBounds(key)' options='vm.map.options'>
+    <ui-gmap-polygon path='vm.paths[key]' stroke='{color:"#6699ee",opacity:1}' fill='{color:"#6699ee",opacity:.2}' fit='true'></ui-gmap-polygon>
+  </ui-gmap-google-map>
+  <md-table-container flex='40'>
+    <table md-table md-row-select multiple ng-model='vm.selected'>
+      <thead md-head>
+        <tr md-row>
+          <th md-column md-numeric>Punto</th>
+          <th md-column md-numeric>x</th>
+          <th md-column md-numeric>y</th>
+        </tr>
+      </thead>
+      <tbody md-body>
+        <tr md-row md-select="dessert" md-select-id="name" md-auto-select ng-repeat="(key,point) in space">
+          <td md-cell>{{key+1}}</td>
+          <td md-cell>{{point.x.match}}</td>
+          <td md-cell>{{point.y.match}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </md-table-container>
+  <pre layout-padding ng-bind-html='vm.getTextFragment(space) | highlightWords : vm.getHighlights(space) '></pre>
+</md-card>
