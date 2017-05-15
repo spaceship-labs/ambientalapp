@@ -20,6 +20,7 @@ function geomapService($sails) {
 
   function getDoc(clave, doc) {
     return $sails.get('/mia/getDoc', { clave: clave, doc: doc }).then(function(res) {
+      console.log(res.body.text);
       return res.body.text;
     });
   }
