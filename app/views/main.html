@@ -5,7 +5,7 @@
       <md-list layout-padding>
         <md-list-item class="md-3-line" md-virtual-repeat="mia in vm.infiniteMias" md-on-demand>
           <div class="md-list-item-text" layout="column" md-padding>
-            <h3><a ng-href='#/proyecto/{{mia.clave}}'>{{ mia.proyecto }} - {{ mia.clave }}</a></h3>
+            <h3><a ng-href='#!/proyecto/{{mia.clave}}'>{{ mia.proyecto }} - {{ mia.clave }}</a></h3>
             <h4>{{ mia.entidad }} - {{mia.fechaIngreso | date : shortDate}}</h4>
             <p>{{ mia.tramite }}</p>
           </div>
