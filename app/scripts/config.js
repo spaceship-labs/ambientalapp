@@ -2,7 +2,7 @@
 
 angular.module('ambientalappApp')
   .config(['$sailsProvider', function($sailsProvider) {
-    $sailsProvider.url = 'http://semarnapi.herokuapp.com';
+    $sailsProvider.url = 'https://semarnapi.herokuapp.com';
     //$sailsProvider.url = 'http://localhost:1337';
   }]);
 /*  .config(function(uiGmapGoogleMapApiProvider) {
