@@ -1,10 +1,17 @@
-<div class="md-toolbar-tools" ng-controller='ToolbarCtrl as vm' layout='column' layout-gt-sm='row'>
-  <h3>
-  	<a href='#!/'>ImpactoAmbiental.mx</a>
-  	<span ng-if='vm.breadcrumb.length'> / </span>
-  	<span ng-repeat='crumb in vm.breadcrumb' md-padding><a ng-href='#!/{{crumb.href}}'> {{crumb.display}}</a> / </span>
-  </h3>
-  
-  <div flex></div>
-  <div ng-include="'views/search.html'"></div>
+<div class="toolbar">
+  <a href="#!/" class="logo" layout="column"  layout-align="center center">
+    <img src="images/logo.png" alt="">
+    <h1>AMBIENTAL<span>APP</span></h1>
+  </a>
+  <div class="toolbar-search" layout-padding layout="column" layout-align="center center">
+    <div ng-include="'views/search.html'"></div>
+  </div>
+  <div class="breadcrumb" ng-controller='ToolbarCtrl as vm' layout='column' layout-padding>
+    <p>
+      <a href='#!/'>AMBIENTALAPP</a>
+      <span ng-if='vm.breadcrumb.length'> / </span>
+      <span ng-repeat='crumb in vm.breadcrumb' md-padding><a ng-href='#!/{{crumb.href}}'> {{crumb.display}}</a></span>
+    </p>
+  </div>
 </div>
+

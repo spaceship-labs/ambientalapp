@@ -19,5 +19,8 @@
     "angular-mocks": "^1.4.0"
   },
   "appPath": "app",
-  "moduleName": "ambientalappApp"
+  "moduleName": "ambientalappApp",
+  "resolutions": {
+    "angular": "1.7.1"
+  }
 }
