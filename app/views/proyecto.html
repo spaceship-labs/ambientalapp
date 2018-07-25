@@ -28,7 +28,7 @@
             <p><strong>Estado:</strong> {{ vm.mia.estado }}</p>
           </md-list-item>
           <md-list-item>
-            <p><strong>Gaceta de referencia:</strong><a ng-href='{{vm.mia.gaceta.pdf}}' target='_blank'> {{ vm.mia.gaceta.pdf }}</a></p>
+            <p class="ellipsis"><strong>Gaceta de referencia:</strong><a ng-href='{{vm.mia.gaceta.pdf}}' target='_blank'> {{ vm.mia.gaceta.pdf }}</a></p>
           </md-list-item>
         </md-list>
         <div layout='row' class="card-buttons">
@@ -62,5 +62,6 @@
         <pre layout-padding ng-bind-html='vm.getTextFragment(space) | highlightWords : vm.getHighlights(space) '></pre>
       </md-card>
     </div>
+    <div ng-include="'views/footer.html'"></div>
   </md-content>
 </div>

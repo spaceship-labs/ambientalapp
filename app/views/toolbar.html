@@ -1,10 +1,9 @@
 <div class="toolbar">
-  <a href="#!/" class="logo" layout="column"  layout-align="center center">
-    <img src="images/logo.png" alt="">
-    <h1>AMBIENTAL<span>APP</span></h1>
+  <a href="#!/" class="logo" layout="column"  layout-align="center center" layout-padding>
+    <img src="images/logo_am.png" alt="">
   </a>
-  <div class="toolbar-search" layout-padding layout="column" layout-align="center center">
-    <div ng-include="'views/search.html'"></div>
+  <div class="toolbar-search" layout-padding layout="row" layout-align="center center">
+    <div ng-include="'views/search.html'" flex="90"></div>
   </div>
   <div class="breadcrumb" ng-controller='ToolbarCtrl as vm' layout='column' layout-padding>
     <p>
