@@ -34,7 +34,7 @@
     "time-grunt": "^1.0.0"
   },
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">=4.6.0 <6.0"
   },
   "dependencies": {
     "angular-sails": "^2.0.0-beta.4",

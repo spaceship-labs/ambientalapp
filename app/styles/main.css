@@ -130,16 +130,18 @@ md-autocomplete input[name="autocompleteSearch"]:-moz-placeholder { /* Firefox 1
   color: black;
 }
 
-.main-card .card-buttons a.md-button{
-  color: white;
-  background: #ECB060;
-}
-
+.main-card .card-buttons a.md-button,
+.main-card .md-button.md-primary.md-raised:not([disabled]).md-focused,
 .main-card .card-buttons a.md-button:hover,
 .main-card .md-button.md-primary.md-raised:not([disabled]):hover
 {
   background: #ECB060;
-  color: black;
+  color: white;
+}
+
+.main-card .card-buttons .md-button[disabled]:hover,
+.main-card .card-buttons .md-button[disabled]{
+  background: #bbb;
 }
 
 .main-card md-list-item::before,

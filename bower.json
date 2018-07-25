@@ -21,6 +21,6 @@
   "appPath": "app",
   "moduleName": "ambientalappApp",
   "resolutions": {
-    "angular": "1.7.1"
+    "angular": "1.7.2"
   }
 }
