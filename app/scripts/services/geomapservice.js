@@ -33,27 +33,12 @@ function geomapService($sails) {
     var result;
     /*jshint boss:true */
     while (result = pattern.exec(text)) {
+      //console.log(result);
       var distance = result.index - index;
       console.log(result[0], result.index, index, distance);
       if (index === 0 || distance < 300) {
         index = result.index;
       } else {
-        if (results.length > 1) {
-          var points = [];
-          results.forEach(function(result, key) {
-            if (key % 2 === 0) {
-              if (results.length >= key + 2) {
-                points.push({
-                  x: result,
-                  y: results[key + 1]
-                });
-              }
-            }
-          });
-          if (points.length >= 2) {
-            spaces.push(points);
-          }
-        }
         results = [];
         index = 0;
       }
@@ -62,6 +47,27 @@ function geomapService($sails) {
         match: result[0]
       });
     }
+
+    console.log(results);
+    
+    if (results.length > 1) {
+      var points = [];
+      //console.log('saving '+results.length);
+      results.forEach(function(result, key) {
+        if (key % 2 === 0) {
+          if (results.length >= key + 2) {
+            points.push({
+              x: result,
+              y: results[key + 1]
+            });
+          }
+        }
+      });
+      if (points.length >= 2) {
+        spaces.push(points);
+      }
+    }
+    console.log(spaces);
     return spaces;
 
   }
@@ -73,16 +79,16 @@ function geomapService($sails) {
       var wgs84 = '+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs';
 
       var latlng = points.map(function(point) {
-        var x = point.x.match.replace(/,/g,'');
-        var y = point.y.match.replace(/,/g,'');
-        var result = proj4(utm, wgs84, [x,y]);
+        var x = point.x.match.replace(/,/g, '');
+        var y = point.y.match.replace(/,/g, '');
+        var result = proj4(utm, wgs84, [x, y]);
         return {
           latitude: result[1],
           longitude: result[0]
         };
       });
       return latlng;
-    }else{
+    } else {
       return false;
     }
   }
